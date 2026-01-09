@@ -12,4 +12,4 @@ This script sets up a brand new Ubuntu VM or installation with:
 3. Install Neovim & Lazy-vim
 4.  Install Solana Development tools
 
-> This script is personal and is customized to bring my personally preferred tools.
+> This script is personal and is customized to bring my preferred tools.
