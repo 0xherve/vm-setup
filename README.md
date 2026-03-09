@@ -8,13 +8,13 @@ This repository keeps a bash script to set up a Linux Virtual Machine (VM) after
 - Essential tools: `git`, `curl`, `unzip`, `build-essential`, `vim`
 - Node.js 24 LTS + `pnpm` + `pm2`
 - Nginx (enabled & started on boot)
-- Vim set as default git editor
+- Vim set as the default git editor
 
 ## Usage
 
 To use this script, copy and enter the following command in your terminal:
 ```bash
-curl -fsSL polimath.dev/install | bash
+curl -fsSL terminal.polimath.workers.dev | bash
 ```
 
 ## Requirements
