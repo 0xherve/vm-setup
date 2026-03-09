@@ -1,38 +1,37 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+echo
 echo "========== Setting up VM =========="
 
 # Update system
-echo " --- Updating system ---"
+echo
+echo "----- Updating system -----"
 sudo apt-get update
 sudo apt-get upgrade -y
 echo
 echo
 
 # Install dependencies
-echo " --- Installing essential dependencies ---"
+echo
+echo "----- Installing essential dependencies -----"
 sudo apt install -y git curl unzip build-essential vim
 git config --global core.editor vim
 echo
 echo
 
 # Installing Node and pnpm
-echo " --- Installing Node and pnpm ---"
+echo
+echo "----- Installing Node and pnpm -----"
 curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g pnpm pm2 
 echo
 echo
 
-# Installing Bun
-echo " --- Installing Bun ---"
-curl -fsSL https://bun.sh/install | bash
-echo
-echo
-
 # Install Nginx
-echo " --- Installing Nginx ---"
+echo
+echo "----- Installing Nginx -----"
 sudo apt install -y nginx
 sudo systemctl enable nginx
 sudo systemctl start nginx
@@ -44,9 +43,11 @@ echo
 echo
 source ~/.bashrc
 echo
-echo
 
 echo "========== Done! =========="
+echo
+
 echo "Node: $(node -v)"
 echo "pnpm: $(pnpm -v)"
 echo "Nginx: $(nginx -v 2>&1)"
+echo
