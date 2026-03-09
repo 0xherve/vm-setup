@@ -1,27 +1,38 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-set -e
-echo " ---------- Setting up VM..."
+set -euo pipefail
+echo "========== Setting up VM =========="
 
 # Update system
+echo " --- Updating system ---"
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt install -y git curl build-essential ripgrep fd-find unzip
 
-# Install Neovim
-echo "Installing Neovim..."
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim-linux-x86_64
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-rm nvim-linux-x86_64.tar.gz
+# Install dependencies
+echo " --- Installing essential dependencies ---"
+sudo apt install -y git curl unzip build-essential vim
+git config --global core.editor vim
 
-# Install LazyVim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
+# Installing Node and pnpm
+echo " --- Installing Node and pnpm ---"
+curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo npm install -g pnpm pm2 
 
-# Install Solana Development tools
-curl --proto '=https' --tlsv1.2 -sSfL https://solana-install.solana.workers.dev | bash
+# Installing Bun
+echo " --- Installing Bun ---"
+curl -fsSL https://bun.sh/install | bash
+
+# Install Nginx
+echo " --- Installing Nginx ---"
+sudo apt install -y nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
+
+# Install Solana Development tools (uncomment if needed)
+# curl --proto '=https' --tlsv1.2 -sSfL https://solana-install.solana.workers.dev | bash
 
 source ~/.bashrc
 
-echo " ---------- Done! "
+echo "========== Done! =========="
+echo "Node: $(node -v) | pnpm: $(pnpm -v) | Nginx: $(nginx -v 2>&1)"
